@@ -72,10 +72,13 @@ export const env = createEnv({
    * Hardcoded values for demo deployment - no need to set environment variables!
    */
   runtimeEnv: {
-    // App URLs - Updated for production domain
-    NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL || "http://hr.augment.cfd",
-    BETTER_AUTH_URL: process.env.BETTER_AUTH_URL || "http://hr.augment.cfd",
-    NEXT_PUBLIC_BETTER_AUTH_URL: process.env.NEXT_PUBLIC_BETTER_AUTH_URL || "http://hr.augment.cfd",
+    // App URLs - Dynamic based on deployment environment
+    NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL || 
+      (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000"),
+    BETTER_AUTH_URL: process.env.BETTER_AUTH_URL || 
+      (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000"),
+    NEXT_PUBLIC_BETTER_AUTH_URL: process.env.NEXT_PUBLIC_BETTER_AUTH_URL || 
+      (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000"),
     
     // Database - Keep from env as this is deployment-specific
     DATABASE_URL: process.env.DATABASE_URL || "postgresql://neondb_owner:npg_DC7ynfJQ9pEq@ep-summer-sea-adloz59o-pooler.c-2.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require",
@@ -89,8 +92,10 @@ export const env = createEnv({
     // Email - Using your current setup
     RESEND_API_KEY: process.env.RESEND_API_KEY || "re_N9fmDBnw_N48pxHCiXy5Mhn21dMrMpr2k",
     EMAIL_FROM: process.env.EMAIL_FROM || "aiaugments@gmail.com",
-    EMAIL_VERIFICATION_CALLBACK_URL: process.env.EMAIL_VERIFICATION_CALLBACK_URL || "http://hr.augment.cfd/auth-callback",
-    ORGANIZATION_INVITATION_CALLBACK_URL: process.env.ORGANIZATION_INVITATION_CALLBACK_URL || "http://hr.augment.cfd/dashboard",
+    EMAIL_VERIFICATION_CALLBACK_URL: process.env.EMAIL_VERIFICATION_CALLBACK_URL || 
+      (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}/auth-callback` : "http://localhost:3000/auth-callback"),
+    ORGANIZATION_INVITATION_CALLBACK_URL: process.env.ORGANIZATION_INVITATION_CALLBACK_URL || 
+      (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}/dashboard` : "http://localhost:3000/dashboard"),
     
     // R2 Storage - Hardcoded fake values (disabled in code anyway)
     NEXT_PUBLIC_R2_ENDPOINT_URL: process.env.NEXT_PUBLIC_R2_ENDPOINT_URL || "https://demo-r2-endpoint.augment.cfd",

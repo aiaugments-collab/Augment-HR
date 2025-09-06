@@ -118,29 +118,6 @@ export function HeroSection() {
                 </Button>
               </Link>
             </motion.div>
-
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ type: "spring", stiffness: 400, damping: 17 }}
-            >
-              <Button
-                variant="outline"
-                size="lg"
-                className="group border-primary/20 bg-background/80 hover:border-primary/50 hover:bg-primary/5 relative h-14 overflow-hidden border-2 px-8 text-base font-semibold backdrop-blur-sm transition-all duration-300 hover:shadow-lg sm:h-16 sm:px-10 sm:text-lg"
-                onClick={() =>
-                  window.open("https://youtu.be/xuPdJo9f9Xw", "_blank")
-                }
-              >
-                <span className="relative z-10 flex items-center">
-                  <div className="bg-primary/10 group-hover:bg-primary/20 mr-3 flex h-6 w-6 items-center justify-center rounded-full transition-colors duration-300">
-                    <div className="border-l-primary h-0 w-0 border-t-[4px] border-r-0 border-b-[4px] border-l-[6px] border-t-transparent border-b-transparent" />
-                  </div>
-                  Watch Demo
-                </span>
-                <div className="from-primary/5 absolute inset-0 bg-gradient-to-r to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-              </Button>
-            </motion.div>
           </motion.div>
 
           {/* Stats */}

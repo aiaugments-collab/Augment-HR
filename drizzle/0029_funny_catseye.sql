@@ -1,0 +1,1 @@
+ALTER TABLE "job_postings" ALTER COLUMN "created_by_employee_id" SET DATA TYPE uuid USING created_by_employee_id::uuid;

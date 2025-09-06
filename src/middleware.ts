@@ -15,26 +15,36 @@ const authRoutes = [
 const organizationRoutes = ["/organization-setup"];
 
 export default async function authMiddleware(request: NextRequest) {
-  const nextUrl = request.nextUrl;
-  const pathName = request.nextUrl.pathname;
+  try {
+    const nextUrl = request.nextUrl;
+    const pathName = request.nextUrl.pathname;
 
-  const isAuthRoute = authRoutes.includes(pathName);
-  const isProtectedRoute =
-    protectedRoutes.includes(pathName) ||
-    pathName.startsWith("/dashboard") ||
-    pathName.startsWith("/admin");
-  const isOrganizationRoute = organizationRoutes.includes(pathName);
-  const isAdminRoute = pathName.startsWith("/admin");
+    const isAuthRoute = authRoutes.includes(pathName);
+    const isProtectedRoute =
+      protectedRoutes.includes(pathName) ||
+      pathName.startsWith("/dashboard") ||
+      pathName.startsWith("/admin");
+    const isOrganizationRoute = organizationRoutes.includes(pathName);
+    const isAdminRoute = pathName.startsWith("/admin");
 
-  const { data: session } = await betterFetch<Session>(
-    "/api/auth/get-session",
-    {
-      baseURL: env.BETTER_AUTH_URL,
-      headers: {
-        cookie: request.headers.get("cookie") ?? "",
-      },
-    },
-  );
+    let session: Session | null = null;
+    
+    try {
+      const { data } = await betterFetch<Session>(
+        "/api/auth/get-session",
+        {
+          baseURL: env.BETTER_AUTH_URL,
+          headers: {
+            cookie: request.headers.get("cookie") ?? "",
+          },
+        },
+      );
+      session = data;
+    } catch (error) {
+      console.error("Auth session fetch failed:", error);
+      // Continue without session - will redirect to sign-in if needed
+      session = null;
+    }
 
   // if user is superadmin and trying to access dashboard, redirect to admin
   if (session?.user?.role === "super_admin" && pathName === "/dashboard") {
@@ -117,10 +127,16 @@ export default async function authMiddleware(request: NextRequest) {
   }
 
   return NextResponse.next();
+  } catch (error) {
+    console.error("Middleware error:", error);
+    // On any middleware error, allow the request to continue
+    return NextResponse.next();
+  }
 }
 
 export const config = {
   matcher: [
     "/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt|$).*)",
   ],
+  runtime: 'nodejs', // Use Node.js runtime instead of Edge for better compatibility
 };

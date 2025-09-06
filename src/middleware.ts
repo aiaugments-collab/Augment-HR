@@ -29,21 +29,27 @@ export default async function authMiddleware(request: NextRequest) {
 
     let session: Session | null = null;
     
-    try {
-      const { data } = await betterFetch<Session>(
-        "/api/auth/get-session",
-        {
-          baseURL: env.BETTER_AUTH_URL,
-          headers: {
-            cookie: request.headers.get("cookie") ?? "",
-          },
-        },
-      );
-      session = data;
-    } catch (error) {
-      console.error("Auth session fetch failed:", error);
-      // Continue without session - will redirect to sign-in if needed
+    // Skip auth check on Vercel to avoid circular dependency
+    if (process.env.VERCEL) {
+      console.log("Skipping auth check on Vercel deployment");
       session = null;
+    } else {
+      try {
+        const { data } = await betterFetch<Session>(
+          "/api/auth/get-session",
+          {
+            baseURL: env.BETTER_AUTH_URL,
+            headers: {
+              cookie: request.headers.get("cookie") ?? "",
+            },
+          },
+        );
+        session = data;
+      } catch (error) {
+        console.error("Auth session fetch failed:", error);
+        // Continue without session - will redirect to sign-in if needed
+        session = null;
+      }
     }
 
   // if user is superadmin and trying to access dashboard, redirect to admin

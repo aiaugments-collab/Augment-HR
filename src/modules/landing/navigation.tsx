@@ -32,8 +32,8 @@ export function Navigation() {
               <motion.a
                 key={item.name}
                 href={item.href}
-                target={item.external ? "_blank" : undefined}
-                rel={item.external ? "noopener noreferrer" : undefined}
+                target={undefined}
+                rel={undefined}
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
@@ -101,8 +101,8 @@ export function Navigation() {
                 <a
                   key={item.name}
                   href={item.href}
-                  target={item.external ? "_blank" : undefined}
-                  rel={item.external ? "noopener noreferrer" : undefined}
+                  target={undefined}
+                  rel={undefined}
                   className="flex items-center space-x-2 text-slate-600 transition-colors duration-200 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400"
                   onClick={() => setIsOpen(false)}
                 >

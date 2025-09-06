@@ -105,7 +105,7 @@ export const env = createEnv({
     
     // AI APIs - Using your current keys
     GROQ_API_KEY: process.env.GROQ_API_KEY || "gsk_fake123456789abcdefghijklmnopqrstuvwxyz",
-    OPENAI_API_KEY: process.env.OPENAI_API_KEY || "sk-fake123456789abcdefghijklmnopqrstuvwxyzABCDEF",
+    OPENAI_API_KEY: process.env.OPENAI_API_KEY || "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",
     PINECONE_API_KEY: process.env.PINECONE_API_KEY || "pcsk_3smRTf_Ss6oHrgWp52y9V4PbyoHpcdMyTKwEfePzBVvWDQeoYi3D3wd5XUxx3UhmxBbBE2",
     PINECONE_INDEX: process.env.PINECONE_INDEX || "new",
     

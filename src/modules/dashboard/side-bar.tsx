@@ -26,11 +26,13 @@ import {
 import { useAbility } from "@/providers/ability-context";
 import { getMenuItems } from "./consts/sidebar-items";
 import { Logo } from "@/components/logo";
+import { useSession } from "@/server/auth/auth-client";
 
 export function DashboardSideBar() {
   const pathname = usePathname();
   const [openItems, setOpenItems] = useState<string[]>([]);
   const ability = useAbility();
+  const { data: session } = useSession();
   const MENU_ITEMS = getMenuItems(ability);
 
   const toggleItem = (title: string) => {
@@ -149,6 +151,24 @@ export function DashboardSideBar() {
                 </SidebarMenuItem>
               );
             })}
+            
+            {/* Super Admin Dashboard Link */}
+            {session?.user?.role === "super_admin" && (
+              <SidebarMenuItem>
+                <SidebarMenuButton
+                  asChild
+                  className={cn(
+                    pathname === "/admin" && "bg-primary/10 text-primary",
+                    "border-t mt-2 pt-2"
+                  )}
+                >
+                  <Link href="/admin">
+                    <Brain className="h-5 w-5" />
+                    <span>Super Admin</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            )}
           </SidebarMenu>
         </SidebarGroup>
       </SidebarContent>

@@ -46,10 +46,7 @@ export default async function authMiddleware(request: NextRequest) {
       session = null;
     }
 
-  // if user is superadmin and trying to access dashboard, redirect to admin
-  if (session?.user?.role === "super_admin" && pathName === "/dashboard") {
-    return NextResponse.redirect(new URL("/admin", request.url));
-  }
+  // Remove forced redirect for super admin - let them access both dashboards
 
   // If trying to access admin routes without super_admin role
   if (isAdminRoute && (!session || session.user.role !== "super_admin")) {
@@ -68,9 +65,8 @@ export default async function authMiddleware(request: NextRequest) {
 
   // If authenticated with verified email and trying to access auth routes
   if (isAuthRoute && session?.user?.emailVerified) {
-    if (session.user.role === "super_admin") {
-      return NextResponse.redirect(new URL("/admin", request.url));
-    }
+    // Redirect all users (including super admin) to normal dashboard by default
+    // Super admin can navigate to /admin using the sidebar link
 
     // Skip organization check for auth-callback as it handles pending invitations
     if (pathName === "/auth-callback") {
@@ -103,12 +99,8 @@ export default async function authMiddleware(request: NextRequest) {
     (session.session.activeOrganizationId ||
       session.user.role === "super_admin")
   ) {
-    return NextResponse.redirect(
-      new URL(
-        session.user.role === "super_admin" ? "/admin" : "/dashboard",
-        request.url,
-      ),
-    );
+    // Redirect all users to normal dashboard by default
+    return NextResponse.redirect(new URL("/dashboard", request.url));
   }
 
   // If trying to access protected routes without authentication

@@ -23,6 +23,12 @@ export const auth = betterAuth({
     schema: schema,
     usePlural: true,
   }),
+  trustedOrigins: [
+    "http://localhost:3000",
+    "https://hr.augment.cfd",
+    "https://augment-hr.vercel.app",
+    ...(process.env.VERCEL_URL ? [`https://${process.env.VERCEL_URL}`] : []),
+  ],
   emailAndPassword: {
     enabled: true,
     async sendResetPassword({ url, user, token }) {

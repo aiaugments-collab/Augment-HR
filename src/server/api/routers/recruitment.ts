@@ -176,6 +176,31 @@ export const recruitmentRouter = createTRPCRouter({
       });
     }),
 
+  // Get all applications across all jobs
+  getAllApplications: protectedProcedure
+    .input(
+      z.object({
+        status: z
+          .enum(["all", "pending", "screened"])
+          .optional()
+          .default("all"),
+        limit: z.number().min(1).max(100).default(20),
+        offset: z.number().min(0).default(0),
+      }),
+    )
+    .query(async ({ input, ctx }) => {
+      if (!ctx.session.session.activeOrganizationId) {
+        throw new Error("No active organization");
+      }
+
+      return RecruitmentService.getAllApplications({
+        organizationId: ctx.session.session.activeOrganizationId,
+        status: input.status,
+        limit: input.limit,
+        offset: input.offset,
+      });
+    }),
+
   // Get application counts for tabs
   getApplicationCounts: protectedProcedure
     .input(z.object({ jobId: z.string().uuid() }))

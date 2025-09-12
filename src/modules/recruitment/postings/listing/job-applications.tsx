@@ -20,6 +20,8 @@ import { APPLICATION_STATUSES } from "../../consts";
 import { UploadResumeDialog } from "./upload-resume-dialog";
 import { ResumeScreeningDialog } from "../../resume-screening/resume-screening-dialog";
 import { ApplicationsSkeleton } from "../../components/skeletons";
+import { getResumeViewerUrl } from "@/lib/resume-utils";
+import Link from "next/link";
 
 interface JobApplicationsProps {
   jobId: string;
@@ -222,7 +224,7 @@ export function JobApplications({ jobId }: JobApplicationsProps) {
                       <>
                         <Button variant="outline" size="sm" asChild>
                           <a
-                            href={application.resumeUrl}
+                            href={getResumeViewerUrl(application.resumeUrl)}
                             target="_blank"
                             rel="noopener noreferrer"
                           >
@@ -247,8 +249,10 @@ export function JobApplications({ jobId }: JobApplicationsProps) {
                       </>
                     )}
 
-                    <Button variant="outline" size="sm">
-                      View Details
+                    <Button variant="outline" size="sm" asChild>
+                      <Link href={`/dashboard/recruitment/applications/${application.id}`}>
+                        View Details
+                      </Link>
                     </Button>
                   </div>
                 </div>

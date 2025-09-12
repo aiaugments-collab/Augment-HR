@@ -19,6 +19,8 @@ import {
   Brain,
   Briefcase,
 } from "lucide-react";
+import { getResumeViewerUrl } from "@/lib/resume-utils";
+import Link from "next/link";
 import { formatDistanceToNow, format } from "date-fns";
 import { APPLICATION_STATUSES } from "../consts";
 import { ResumeScreeningDialog } from "../resume-screening/resume-screening-dialog";
@@ -278,7 +280,7 @@ export function ApplicationsPage() {
                             <>
                               <Button variant="outline" size="sm" asChild>
                                 <a
-                                  href={application.resumeUrl}
+                                  href={getResumeViewerUrl(application.resumeUrl)}
                                   target="_blank"
                                   rel="noopener noreferrer"
                                 >
@@ -305,8 +307,10 @@ export function ApplicationsPage() {
                             </>
                           )}
 
-                          <Button variant="outline" size="sm">
-                            View Details
+                          <Button variant="outline" size="sm" asChild>
+                            <Link href={`/dashboard/recruitment/applications/${application.id}`}>
+                              View Details
+                            </Link>
                           </Button>
                         </div>
                       </div>

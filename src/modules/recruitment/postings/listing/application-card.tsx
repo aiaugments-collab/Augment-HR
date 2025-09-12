@@ -8,6 +8,7 @@ import { APPLICATION_STATUSES } from "../../consts";
 import type { JobApplicationType } from "../../types";
 import { ResumeScreeningDialog } from "../../resume-screening/resume-screening-dialog";
 import { AIResultsViewer } from "../../resume-screening/ai-results-viewer";
+import { getResumeViewerUrl } from "@/lib/resume-utils";
 import { startCase } from "lodash-es";
 
 interface ApplicationCardProps {
@@ -114,7 +115,7 @@ export function ApplicationCard({ application, jobId }: ApplicationCardProps) {
               <>
                 <Button variant="outline" size="sm" asChild>
                   <a
-                    href={application.resumeUrl}
+                    href={getResumeViewerUrl(application.resumeUrl)}
                     target="_blank"
                     rel="noopener noreferrer"
                   >

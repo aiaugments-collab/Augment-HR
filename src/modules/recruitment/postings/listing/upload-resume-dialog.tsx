@@ -26,6 +26,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Upload, FileText, X } from "lucide-react";
 import { uploadFileToS3 } from "@/lib/storage";
+import { uploadFileToCloudinary } from "@/lib/cloudinary-upload";
 import { toast } from "sonner";
 import { Spinner } from "@/components/spinner";
 
@@ -41,20 +42,30 @@ type ResumeUploadFormData = z.infer<typeof resumeUploadSchema>;
 interface UploadResumeDialogProps {
   jobId: string;
   trigger?: React.ReactNode;
+  organizationId?: string; // Required for public applications
+  isPublic?: boolean; // Whether this is a public job application
 }
 
 export function UploadResumeDialog({
   jobId,
   trigger,
+  organizationId,
+  isPublic = false,
 }: UploadResumeDialogProps) {
   const [open, setOpen] = useState(false);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [isUploading, setIsUploading] = useState(false);
 
   const utils = api.useUtils();
-  const attachmentMutation = api.attachment.getPresignedUrl.useMutation();
-  const createApplicationMutation =
-    api.recruitment.createApplication.useMutation();
+  
+  // Use different mutations based on whether this is public or authenticated
+  const publicAttachmentMutation = api.attachment.getPublicPresignedUrl.useMutation();
+  const privateAttachmentMutation = api.attachment.getPresignedUrl.useMutation();
+  const publicApplicationMutation = api.recruitment.createPublicApplication.useMutation();
+  const privateApplicationMutation = api.recruitment.createApplication.useMutation();
+  
+  const attachmentMutation = isPublic ? publicAttachmentMutation : privateAttachmentMutation;
+  const createApplicationMutation = isPublic ? publicApplicationMutation : privateApplicationMutation;
 
   const form = useForm<ResumeUploadFormData>({
     resolver: zodResolver(resumeUploadSchema),
@@ -103,27 +114,59 @@ export function UploadResumeDialog({
 
     setIsUploading(true);
     try {
-      // Upload file to S3
+      // Upload file to storage (Cloudinary for public, S3 for private)
       const uploadResponse = await attachmentMutation.mutateAsync({
         fileName: selectedFile.name,
         mimeType: selectedFile.type,
         type: "document",
       });
 
-      await uploadFileToS3({
-        file: selectedFile,
-        presignedUrl: uploadResponse.uploadUrl,
-      });
+      let actualPublicUrl = uploadResponse.publicUrl;
+
+      if (isPublic) {
+        // Upload to Cloudinary for public applications
+        if ('uploadParams' in uploadResponse) {
+          const cloudinaryResult = await uploadFileToCloudinary({
+            file: selectedFile,
+            uploadUrl: uploadResponse.uploadUrl,
+            uploadParams: uploadResponse.uploadParams,
+          });
+          // Use the actual URL returned by Cloudinary
+          actualPublicUrl = cloudinaryResult.secure_url;
+        }
+      } else {
+        // Upload to S3 for authenticated users
+        await uploadFileToS3({
+          file: selectedFile,
+          presignedUrl: uploadResponse.uploadUrl,
+        });
+      }
 
       // Create job application
-      await createApplicationMutation.mutateAsync({
-        jobPostingId: jobId,
-        candidateName: data.candidateName,
-        candidateEmail: data.candidateEmail,
-        candidatePhone: data.candidatePhone || null,
-        resumeUrl: uploadResponse.publicUrl,
-        coverLetter: data.coverLetter || null,
-      });
+      if (isPublic) {
+        if (!organizationId) {
+          throw new Error("Organization ID is required for public applications");
+        }
+        
+        await publicApplicationMutation.mutateAsync({
+          jobPostingId: jobId,
+          candidateName: data.candidateName,
+          candidateEmail: data.candidateEmail,
+          candidatePhone: data.candidatePhone || null,
+          resumeUrl: actualPublicUrl,
+          coverLetter: data.coverLetter || null,
+          organizationId,
+        });
+      } else {
+        await privateApplicationMutation.mutateAsync({
+          jobPostingId: jobId,
+          candidateName: data.candidateName,
+          candidateEmail: data.candidateEmail,
+          candidatePhone: data.candidatePhone || null,
+          resumeUrl: actualPublicUrl,
+          coverLetter: data.coverLetter || null,
+        });
+      }
 
       toast.success("Resume uploaded and application created successfully!");
 
@@ -132,8 +175,10 @@ export function UploadResumeDialog({
       setSelectedFile(null);
       setOpen(false);
 
-      // Refresh applications list
-      await utils.recruitment.getApplications.invalidate({ jobId });
+      // Refresh applications list (only for authenticated users)
+      if (!isPublic) {
+        await utils.recruitment.getApplications.invalidate({ jobId });
+      }
     } catch (error) {
       console.error("Upload error:", error);
       toast.error("Failed to upload resume. Please try again.");

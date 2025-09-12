@@ -229,6 +229,26 @@ export const recruitmentRouter = createTRPCRouter({
       });
     }),
 
+  // Public endpoint for job applications (from public job postings)
+  createPublicApplication: publicProcedure
+    .input(createApplicationSchema.extend({
+      organizationId: z.string(), // Required for public applications
+    }))
+    .mutation(async ({ input }) => {
+      return RecruitmentService.createJobApplication(input);
+    }),
+
+  getApplicationById: protectedProcedure
+    .input(z.object({
+      applicationId: z.string(),
+    }))
+    .query(async ({ input, ctx }) => {
+      return RecruitmentService.getApplicationById({
+        applicationId: input.applicationId,
+        organizationId: ctx.session.user.organizationId,
+      });
+    }),
+
   // Publish job (change status to open)
   publish: protectedProcedure
     .input(z.object({ id: z.string().uuid() }))

@@ -47,6 +47,15 @@ export const env = createEnv({
     GEMINI_API_KEY: z.string().min(1, {
       message: "GEMINI_API_KEY must be set",
     }),
+    CLOUDINARY_CLOUD_NAME: z.string().min(1, {
+      message: "CLOUDINARY_CLOUD_NAME must be set",
+    }),
+    CLOUDINARY_API_KEY: z.string().min(1, {
+      message: "CLOUDINARY_API_KEY must be set",
+    }),
+    CLOUDINARY_API_SECRET: z.string().min(1, {
+      message: "CLOUDINARY_API_SECRET must be set",
+    }),
   },
 
   /**
@@ -113,6 +122,11 @@ export const env = createEnv({
     GEMINI_API_KEY: process.env.GEMINI_API_KEY || "demo-gemini-key-get-from-google-ai-studio",
     PINECONE_API_KEY: process.env.PINECONE_API_KEY || "pcsk_3smRTf_Ss6oHrgWp52y9V4PbyoHpcdMyTKwEfePzBVvWDQeoYi3D3wd5XUxx3UhmxBbBE2",
     PINECONE_INDEX: process.env.PINECONE_INDEX || "new",
+    
+    // Cloudinary Configuration
+    CLOUDINARY_CLOUD_NAME: process.env.CLOUDINARY_CLOUD_NAME || "dogcsr68o",
+    CLOUDINARY_API_KEY: process.env.CLOUDINARY_API_KEY || "239632862788224",
+    CLOUDINARY_API_SECRET: process.env.CLOUDINARY_API_SECRET || "u5q3f1G1yVjeAvbrZHjrxcNBwDE",
     
     // Tracking - Optional (disabled)
     NEXT_PUBLIC_C15T_URL: process.env.NEXT_PUBLIC_C15T_URL || undefined,

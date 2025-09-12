@@ -685,4 +685,78 @@ export class RecruitmentService {
 
     return result[0]!;
   }
+
+  static async getApplicationById(params: {
+    applicationId: string;
+    organizationId: string;
+  }) {
+    const { applicationId, organizationId } = params;
+
+    try {
+      const application = await db
+        .select({
+          id: jobApplications.id,
+          candidateName: jobApplications.candidateName,
+          candidateEmail: jobApplications.candidateEmail,
+          candidatePhone: jobApplications.candidatePhone,
+          resumeUrl: jobApplications.resumeUrl,
+          coverLetter: jobApplications.coverLetter,
+          status: jobApplications.status,
+          createdAt: jobApplications.createdAt,
+          updatedAt: jobApplications.updatedAt,
+          jobPosting: {
+            id: jobPostings.id,
+            title: jobPostings.title,
+            department: jobPostings.department,
+            description: jobPostings.description,
+            location: jobPostings.location,
+            type: jobPostings.locationType,
+            level: jobPostings.experienceRequired,
+            salaryRange: sql<string>`CASE 
+              WHEN ${jobPostings.salaryRangeMin} IS NOT NULL AND ${jobPostings.salaryRangeMax} IS NOT NULL 
+              THEN CONCAT(${jobPostings.salaryCurrency}, ' ', ${jobPostings.salaryRangeMin}, ' - ', ${jobPostings.salaryRangeMax})
+              ELSE NULL 
+            END`,
+          },
+          aiScreeningResult: {
+            id: aiScreeningResults.id,
+            recommendation: aiScreeningResults.recommendation,
+            score: aiScreeningResults.score,
+            reasoning: aiScreeningResults.reasoning,
+            createdAt: aiScreeningResults.createdAt,
+          },
+        })
+        .from(jobApplications)
+        .leftJoin(jobPostings, eq(jobApplications.jobPostingId, jobPostings.id))
+        .leftJoin(
+          aiScreeningResults,
+          eq(jobApplications.id, aiScreeningResults.applicationId)
+        )
+        .where(
+          and(
+            eq(jobApplications.id, applicationId),
+            eq(jobPostings.organizationId, organizationId)
+          )
+        )
+        .limit(1);
+
+      if (!application[0]) {
+        throw new TRPCError({
+          code: "NOT_FOUND",
+          message: "Application not found",
+        });
+      }
+
+      return application[0];
+    } catch (error) {
+      if (error instanceof TRPCError) {
+        throw error;
+      }
+      console.error("Error fetching application by ID:", error);
+      throw new TRPCError({
+        code: "INTERNAL_SERVER_ERROR",
+        message: "Failed to fetch application",
+      });
+    }
+  }
 }

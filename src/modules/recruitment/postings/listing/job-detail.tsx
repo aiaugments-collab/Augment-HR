@@ -256,6 +256,8 @@ export function JobDetail({
               <div className="flex items-center gap-2">
                 <UploadResumeDialog
                   jobId={jobId}
+                  organizationId={organizationId}
+                  isPublic={true}
                   trigger={
                     <Button
                       size="lg"

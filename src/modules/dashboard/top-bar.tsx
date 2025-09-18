@@ -35,7 +35,7 @@ export function DashboardTopNav({ children }: DashboardTopNavProps) {
                 <div className="absolute -top-0.5 -right-0.5 h-2 w-2 rounded-full bg-green-400" />
               </div>
               <span className="text-foreground text-lg font-bold">
-                Augment HR
+                Augment AI
               </span>
             </Link>
           </div>
@@ -45,7 +45,7 @@ export function DashboardTopNav({ children }: DashboardTopNavProps) {
             <div className="relative max-w-md flex-1">
               <Search className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2" />
               <Input
-                placeholder="Search employees, attendance, payroll..."
+                placeholder="Search workforce intelligence, analytics, automation..."
                 className="pl-9"
               />
             </div>

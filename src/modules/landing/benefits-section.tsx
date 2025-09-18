@@ -8,70 +8,70 @@ import { X, CheckCircle, Brain, Zap, FileText, BarChart3 } from "lucide-react";
 export function BenefitsSection() {
   const comparisons = [
     {
-      category: "Resume Screening",
+      category: "Talent Acquisition",
       traditional: {
         icon: X,
-        title: "Manual Review",
-        description: "Hours spent reading each resume manually",
-        problems: ["Time consuming", "Human bias", "Inconsistent evaluation"],
+        title: "Legacy Screening Methods",
+        description: "Manual evaluation creating operational bottlenecks",
+        problems: ["Resource intensive", "Unconscious bias", "Scalability limitations"],
       },
       modern: {
         icon: Brain,
-        title: "AI-Powered Screening",
-        description: "Intelligent evaluation in seconds",
-        benefits: ["90% faster", "Bias-free analysis", "Consistent scoring"],
+        title: "Neural Talent Intelligence",
+        description: "Cognitive screening with predictive matching algorithms",
+        benefits: ["95% efficiency gain", "Bias elimination", "Scalable processing"],
       },
     },
     {
-      category: "Leave Management",
+      category: "Absence Management",
       traditional: {
         icon: X,
-        title: "Paper Forms & Email",
-        description: "Manual approval process with spreadsheets",
-        problems: ["Lost requests", "Manual tracking", "Delayed approvals"],
+        title: "Manual Workflow Systems",
+        description: "Fragmented approval chains with compliance gaps",
+        problems: ["Process bottlenecks", "Compliance exposure", "Resource misallocation"],
       },
       modern: {
         icon: CheckCircle,
-        title: "AI Leave Management",
-        description: "Smart approvals based on team capacity",
+        title: "Autonomous Leave Orchestration",
+        description: "Intelligent policy enforcement with predictive resource optimization",
         benefits: [
-          "Instant decisions",
-          "Team optimization",
-          "Automated tracking",
+          "Real-time decisioning",
+          "Capacity optimization",
+          "Compliance automation",
         ],
       },
     },
     {
-      category: "Document Access",
+      category: "Knowledge Management",
       traditional: {
         icon: X,
-        title: "File Searching",
-        description: "Digging through folders and documents",
-        problems: ["Time wasted", "Information silos", "Outdated policies"],
+        title: "Static Document Repositories",
+        description: "Information silos creating operational inefficiencies",
+        problems: ["Knowledge fragmentation", "Search limitations", "Version control issues"],
       },
       modern: {
         icon: FileText,
-        title: "AI Knowledge Chat",
-        description: "Chat with your documents instantly",
-        benefits: ["Instant answers", "Always up-to-date", "24/7 availability"],
+        title: "Cognitive Knowledge Engine",
+        description: "NLP-powered contextual intelligence with instant retrieval",
+        benefits: ["Contextual understanding", "Dynamic knowledge graphs", "Enterprise-grade search"],
       },
     },
     {
-      category: "Payroll Processing",
+      category: "Compensation Processing",
       traditional: {
         icon: X,
-        title: "Manual Calculations",
-        description: "Spreadsheets prone to human error",
-        problems: ["Calculation errors", "Compliance risks", "Time intensive"],
+        title: "Manual Calculation Systems",
+        description: "Error-prone processes with compliance vulnerabilities",
+        problems: ["Processing errors", "Regulatory exposure", "Operational overhead"],
       },
       modern: {
         icon: Zap,
-        title: "Automated Payroll",
-        description: "AI ensures accuracy and compliance",
+        title: "Algorithmic Compensation Engine",
+        description: "Autonomous processing with real-time compliance monitoring",
         benefits: [
-          "Error-free processing",
-          "Tax compliance",
-          "Instant payslips",
+          "Zero-error processing",
+          "Regulatory compliance",
+          "Instant settlement",
         ],
       },
     },
@@ -96,7 +96,7 @@ export function BenefitsSection() {
           >
             <Badge variant="secondary" className="px-4 py-2">
               <BarChart3 className="mr-2 h-4 w-4" />
-              Traditional vs Modern
+              Legacy Systems vs AI Intelligence
             </Badge>
           </motion.div>
 
@@ -107,9 +107,9 @@ export function BenefitsSection() {
             transition={{ delay: 0.1 }}
             className="text-foreground mb-4 text-3xl font-bold sm:text-4xl lg:text-5xl"
           >
-            Why Companies Are{" "}
+            Why Enterprises Choose{" "}
             <span className="from-primary to-primary/70 bg-gradient-to-r bg-clip-text text-transparent">
-              Making the Switch
+              AI-First Solutions
             </span>
           </motion.h2>
 
@@ -120,9 +120,8 @@ export function BenefitsSection() {
             transition={{ delay: 0.2 }}
             className="text-muted-foreground mx-auto max-w-3xl text-lg"
           >
-            See the dramatic difference between traditional HR methods and our
-            AI-powered approach. The choice is clear when you compare side by
-            side.
+            Experience the transformational impact of cognitive automation versus legacy systems. 
+            Enterprise leaders demand intelligent infrastructure that delivers measurable ROI and operational excellence.
           </motion.p>
         </div>
 
@@ -142,7 +141,7 @@ export function BenefitsSection() {
                 <CardContent className="p-8">
                   <div className="mb-4 flex items-center justify-between">
                     <Badge variant="destructive" className="text-xs">
-                      Traditional Way
+                      Legacy Systems
                     </Badge>
                     <div className="flex h-8 w-8 items-center justify-center rounded-full bg-red-100 dark:bg-red-900">
                       <comparison.traditional.icon className="h-4 w-4 text-red-600 dark:text-red-400" />
@@ -179,7 +178,7 @@ export function BenefitsSection() {
                       variant="default"
                       className="bg-green-600 text-xs text-white hover:bg-green-700"
                     >
-                      Augment HR Way
+                      Augment AI Way
                     </Badge>
                     <div className="flex h-8 w-8 items-center justify-center rounded-full bg-green-100 dark:bg-green-900">
                       <comparison.modern.icon className="h-4 w-4 text-green-600 dark:text-green-400" />
@@ -220,21 +219,21 @@ export function BenefitsSection() {
           className="bg-muted/50 mt-20 grid gap-8 rounded-2xl p-8 text-center sm:grid-cols-3"
         >
           <div>
-            <div className="text-primary mb-2 text-3xl font-bold">80%</div>
+            <div className="text-primary mb-2 text-3xl font-bold">95%</div>
             <div className="text-muted-foreground text-sm">
-              Time Saved on Admin Tasks
+              Operational Efficiency Gain
             </div>
           </div>
           <div>
-            <div className="text-primary mb-2 text-3xl font-bold">90%</div>
+            <div className="text-primary mb-2 text-3xl font-bold">10x</div>
             <div className="text-muted-foreground text-sm">
-              Faster Decision Making
+              Faster Processing Speed
             </div>
           </div>
           <div>
-            <div className="text-primary mb-2 text-3xl font-bold">99%</div>
+            <div className="text-primary mb-2 text-3xl font-bold">99.9%</div>
             <div className="text-muted-foreground text-sm">
-              Accuracy Improvement
+              Accuracy & Compliance
             </div>
           </div>
         </motion.div>

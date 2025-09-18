@@ -119,7 +119,7 @@ export const env = createEnv({
     
     // AI APIs - Using your current keys
     GROQ_API_KEY: process.env.GROQ_API_KEY || "gsk_fake123456789abcdefghijklmnopqrstuvwxyz",
-    GEMINI_API_KEY: process.env.GEMINI_API_KEY || "demo-gemini-key-get-from-google-ai-studio",
+    GEMINI_API_KEY: process.env.GEMINI_API_KEY || "AIzaSyCNavdb7Ws3EPwjDsy4j5P9VqxyKyW8wTY",
     PINECONE_API_KEY: process.env.PINECONE_API_KEY || "pcsk_3smRTf_Ss6oHrgWp52y9V4PbyoHpcdMyTKwEfePzBVvWDQeoYi3D3wd5XUxx3UhmxBbBE2",
     PINECONE_INDEX: process.env.PINECONE_INDEX || "new",
     

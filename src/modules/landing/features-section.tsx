@@ -17,61 +17,61 @@ export function FeaturesSection() {
   const features = [
     {
       icon: Users,
-      title: "Employee Management",
+      title: "Intelligent Workforce Orchestration",
       description:
-        "Complete employee lifecycle management with digital profiles, onboarding workflows, and role-based access control.",
+        "Enterprise-grade human capital management with neural-powered profiling, automated compliance workflows, and dynamic organizational intelligence.",
       benefits: [
-        "Digital employee records",
-        "Invitation system",
-        "Department management",
+        "AI-driven talent mapping",
+        "Predictive workforce analytics", 
+        "Autonomous compliance monitoring",
       ],
     },
     {
       icon: Clock,
-      title: "Attendance Tracking",
+      title: "Cognitive Presence Intelligence",
       description:
-        "Monitor employee attendance with real-time tracking, detailed reporting, and automated notifications.",
+        "Advanced biometric-enabled attendance with real-time behavioral analysis, anomaly detection, and predictive workforce optimization.",
       benefits: [
-        "Real-time tracking",
-        "Automated reports",
-        "Attendance analytics",
+        "Biometric authentication",
+        "Behavioral pattern analysis",
+        "Predictive scheduling",
       ],
     },
     {
       icon: Calendar,
-      title: "Leave Management",
+      title: "Autonomous Leave Orchestration",
       description:
-        "AI-powered leave management with intelligent approvals, balance tracking, and policy automation.",
-      benefits: ["AI-based approvals", "Policy automation", "Balance tracking"],
+        "Machine learning-powered absence management with intelligent policy enforcement, predictive approval algorithms, and dynamic resource allocation.",
+      benefits: ["Neural approval engine", "Predictive policy adaptation", "Smart resource balancing"],
     },
     {
       icon: DollarSign,
-      title: "Payroll Processing",
+      title: "Algorithmic Compensation Engine",
       description:
-        "Automated payroll calculations with tax compliance, payslip generation, and salary management.",
+        "Next-generation payroll automation with real-time tax optimization, compliance intelligence, and dynamic compensation modeling.",
       benefits: [
-        "Automated calculations",
-        "Digital payslips",
-        "Salary management",
+        "Real-time tax optimization",
+        "Compliance automation",
+        "Dynamic compensation algorithms",
       ],
     },
     {
       icon: Briefcase,
-      title: "Recruitment",
+      title: "Neural Talent Acquisition",
       description:
-        "AI-powered recruitment with resume screening, job posting management, and application tracking.",
+        "Revolutionary AI-driven recruitment with cognitive resume analysis, predictive candidate matching, and automated pipeline optimization.",
       benefits: [
-        "AI resume screening",
-        "Job posting system",
-        "Application tracking",
+        "Cognitive screening algorithms",
+        "Predictive talent matching",
+        "Autonomous pipeline management",
       ],
     },
     {
       icon: FileText,
-      title: "Document Management",
+      title: "Intelligent Knowledge Repository",
       description:
-        "Centralized document storage with AI-powered knowledge chat for instant information retrieval.",
-      benefits: ["Document storage", "AI knowledge chat", "Instant search"],
+        "Enterprise document intelligence with natural language processing, contextual search algorithms, and automated knowledge extraction.",
+      benefits: ["NLP-powered search", "Contextual knowledge graphs", "Automated content analysis"],
     },
   ];
 
@@ -90,7 +90,7 @@ export function FeaturesSection() {
             className="mb-4"
           >
             <Badge variant="secondary" className="px-4 py-2">
-              Core Features
+              Enterprise AI Capabilities
             </Badge>
           </motion.div>
           <motion.h2
@@ -100,7 +100,7 @@ export function FeaturesSection() {
             transition={{ delay: 0.1 }}
             className="text-foreground mb-4 text-3xl font-bold sm:text-4xl lg:text-5xl"
           >
-            Everything Your HR Team Needs
+            Advanced AI Infrastructure for Enterprise HR
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -109,8 +109,8 @@ export function FeaturesSection() {
             transition={{ delay: 0.2 }}
             className="text-muted-foreground mx-auto max-w-3xl text-lg"
           >
-            Comprehensive HR management tools designed for modern workplaces.
-            Streamline processes, reduce manual work, and empower your team.
+            Mission-critical workforce intelligence powered by cutting-edge machine learning algorithms. 
+            Transform your organization with autonomous HR operations and predictive analytics.
           </motion.p>
         </div>
 

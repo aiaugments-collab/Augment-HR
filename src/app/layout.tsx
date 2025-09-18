@@ -14,9 +14,9 @@ import {
 import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
-  title: "Augment HR | AI-Powered Human Resource Management Platform",
+  title: "Augment AI | Next-Generation Enterprise HR Intelligence Platform",
   description:
-    "Transform your HR operations with Augment HR - the intelligent human resource management platform featuring AI-powered recruitment, automated workflows, and comprehensive employee management.",
+    "Revolutionary AI workforce intelligence platform delivering autonomous HR operations, predictive analytics, and cognitive automation. Transform your enterprise with advanced machine learning-powered human capital management.",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 

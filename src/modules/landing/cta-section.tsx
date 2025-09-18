@@ -17,12 +17,12 @@ import Link from "next/link";
 
 export function CTASection() {
   const ctaFeatures = [
-    "Complete employee lifecycle management",
-    "AI-powered automation and insights",
-    "Advanced payroll and attendance tracking",
-    "Document management with AI chat",
-    "Role-based access and permissions",
-    "Real-time analytics and reporting",
+    "Autonomous workforce intelligence platform",
+    "Neural-powered predictive analytics engine",
+    "Enterprise-grade cognitive automation",
+    "Advanced NLP knowledge processing",
+    "Zero-touch security orchestration",
+    "Real-time business intelligence dashboards",
   ];
 
   return (
@@ -69,7 +69,7 @@ export function CTASection() {
                   className="border-primary/20 bg-primary/5 border px-4 py-2"
                 >
                   <Brain className="mr-2 h-4 w-4" />
-                  Ready to Get Started?
+                  Enterprise AI Deployment
                 </Badge>
               </motion.div>
 
@@ -80,9 +80,9 @@ export function CTASection() {
                 transition={{ delay: 0.1 }}
                 className="text-foreground mb-3 text-xl leading-tight font-bold sm:mb-4 sm:text-2xl lg:text-3xl"
               >
-                Transform Your HR Operations{" "}
+                Deploy Next-Generation{" "}
                 <span className="from-primary to-primary/70 bg-gradient-to-r bg-clip-text text-transparent">
-                  Today
+                  AI Workforce Intelligence
                 </span>
               </motion.h2>
 
@@ -93,8 +93,8 @@ export function CTASection() {
                 transition={{ delay: 0.2 }}
                 className="text-muted-foreground mx-auto mb-6 max-w-xl text-sm leading-relaxed sm:mb-8 sm:text-base lg:text-lg"
               >
-                Join the revolution in HR management. Experience the power of
-                AI-driven automation and seamless employee experiences.
+                Accelerate digital transformation with enterprise-grade AI agents. 
+                Revolutionary cognitive automation that delivers unprecedented workforce insights and operational excellence.
               </motion.p>
 
               <motion.div
@@ -131,7 +131,7 @@ export function CTASection() {
                       size="lg"
                       className="h-11 w-full px-6 text-sm font-semibold shadow-lg sm:h-12 sm:w-auto sm:px-8 sm:text-base"
                     >
-                      Start For Free
+                      Initialize AI Agent
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
                   </Link>
@@ -151,7 +151,7 @@ export function CTASection() {
                     }}
                   >
                     <Calendar className="mr-2 h-4 w-4" />
-                    Schedule Demo
+                    Enterprise Consultation
                   </Button>
                 </motion.div>
               </motion.div>
@@ -163,7 +163,7 @@ export function CTASection() {
                 transition={{ delay: 0.5 }}
                 className="text-muted-foreground mt-4 text-xs sm:mt-6 sm:text-sm"
               >
-                No credit card required • Setup in minutes • Cancel anytime
+                Enterprise-grade security • Rapid deployment • Scalable architecture
               </motion.p>
             </CardContent>
 

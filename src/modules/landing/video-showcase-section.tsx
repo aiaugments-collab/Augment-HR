@@ -10,15 +10,15 @@ const videoFeatures = [
     id: "resume-screening",
     video: "/videos/resume-screening.mov",
     icon: UserCheck,
-    title: "AI-Powered Resume Screening",
-    subtitle: "Intelligent Hiring Made Simple",
+    title: "Neural Talent Intelligence Engine",
+    subtitle: "Cognitive Recruitment Automation",
     description:
-      "Watch our AI analyze resumes in seconds, ranking candidates based on job requirements and eliminating bias from your hiring process.",
+      "Advanced machine learning algorithms process candidate profiles with predictive matching capabilities, delivering bias-free talent acquisition at enterprise scale.",
     features: [
-      "90% faster screening time",
-      "Bias-free candidate evaluation",
-      "Smart skill matching",
-      "Automated ranking system",
+      "95% processing acceleration",
+      "Algorithmic bias elimination",
+      "Predictive skill correlation",
+      "Autonomous candidate ranking",
     ],
     color: "from-blue-500/10 to-cyan-500/10",
     gradient: "from-blue-500 to-cyan-500",
@@ -27,15 +27,15 @@ const videoFeatures = [
     id: "leave-request",
     video: "/videos/leave-request.mov",
     icon: Calendar,
-    title: "Smart Leave Management",
-    subtitle: "Effortless Time-Off Planning",
+    title: "Autonomous Leave Orchestration",
+    subtitle: "Intelligent Resource Optimization",
     description:
-      "Experience seamless leave management with intelligent approval workflows that consider team capacity and project deadlines.",
+      "Enterprise-grade absence management with real-time capacity modeling, predictive approval algorithms, and dynamic workforce optimization.",
     features: [
-      "One-click leave requests",
-      "Smart approval routing",
-      "Team capacity planning",
-      "Conflict prevention",
+      "Zero-touch request processing",
+      "Intelligent routing algorithms",
+      "Predictive capacity modeling",
+      "Automated conflict resolution",
     ],
     color: "from-green-500/10 to-emerald-500/10",
     gradient: "from-green-500 to-emerald-500",
@@ -44,15 +44,15 @@ const videoFeatures = [
     id: "chat-bot",
     video: "/videos/chat-bot.mov",
     icon: MessageSquare,
-    title: "AI HR Assistant",
-    subtitle: "Instant Answers, Always Available",
+    title: "Cognitive Knowledge Assistant",
+    subtitle: "NLP-Powered Information Retrieval",
     description:
-      "Meet your 24/7 HR companion that instantly answers questions about policies, benefits, and procedures using your company documents.",
+      "Advanced natural language processing with contextual understanding, delivering instant access to enterprise knowledge repositories through conversational AI.",
     features: [
-      "Instant policy answers",
-      "Document-based responses",
-      "24/7 availability",
-      "Natural conversations",
+      "Contextual knowledge graphs",
+      "NLP-powered document analysis",
+      "Real-time information synthesis",
+      "Enterprise-grade conversational AI",
     ],
     color: "from-purple-500/10 to-pink-500/10",
     gradient: "from-purple-500 to-pink-500",
@@ -76,18 +76,17 @@ export function VideoShowcaseSection() {
         >
           <Badge className="mb-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white">
             <Sparkles className="mr-1 h-3 w-3" />
-            AI-Powered Features
+            Enterprise AI Infrastructure
           </Badge>
           <h2 className="mb-6 text-4xl font-bold md:text-5xl">
-            See Our AI in{" "}
+            AI Agents in{" "}
             <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              Action
+              Production
             </span>
           </h2>
           <p className="text-muted-foreground mx-auto max-w-3xl text-lg md:text-xl">
-            Watch how Augment HR transforms traditional HR processes with
-            cutting-edge AI technology. Every feature is designed to save time,
-            reduce bias, and enhance decision-making.
+            Experience enterprise-grade AI workforce intelligence in action. 
+            Our autonomous agents deliver measurable ROI through cognitive automation and predictive analytics.
           </p>
         </motion.div>
 
@@ -133,7 +132,7 @@ export function VideoShowcaseSection() {
                       className={`bg-gradient-to-r ${feature.gradient} text-white shadow-lg backdrop-blur-sm`}
                     >
                       <feature.icon className="mr-1 h-3 w-3" />
-                      Live Demo
+                      AI Agent Demo
                     </Badge>
                   </div>
                 </div>
@@ -170,7 +169,7 @@ export function VideoShowcaseSection() {
 
                     <div className="space-y-3">
                       <h4 className="text-muted-foreground text-sm font-semibold tracking-wide uppercase">
-                        Key Benefits
+                        Enterprise Capabilities
                       </h4>
                       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                         {feature.features.map((feat, featIndex) => (

@@ -98,7 +98,7 @@ export default function NotFound() {
                   AI-Powered
                 </Badge>
                 <h2 className="text-2xl font-semibold text-slate-700 md:text-4xl">
-                  Augment HR
+                  Augment AI
                 </h2>
               </motion.div>
             </div>

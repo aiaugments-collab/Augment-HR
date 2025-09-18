@@ -14,10 +14,10 @@ import {
 import Link from "next/link";
 
 const features = [
-  "AI Resume Screening",
-  "Document Knowledge Chat",
-  "AI-Based Leave Management",
-  "Automated Payroll Processing",
+  "Neural-Powered Talent Acquisition",
+  "Cognitive Workforce Analytics",
+  "Autonomous HR Operations",
+  "Predictive Employee Intelligence",
 ];
 
 export function HeroSection() {
@@ -44,7 +44,7 @@ export function HeroSection() {
               className="border-primary/20 bg-primary/5 border px-4 py-2 text-sm"
             >
               <Brain className="mr-2 h-4 w-4" />
-              AI-First HRMS Platform
+              Enterprise AI Workforce Intelligence
             </Badge>
           </motion.div>
 
@@ -55,10 +55,11 @@ export function HeroSection() {
             transition={{ delay: 0.1 }}
             className="text-foreground mb-6 text-4xl leading-[1.1] font-bold tracking-tight sm:mb-8 sm:text-5xl lg:text-6xl xl:text-7xl"
           >
-            The Future of HR is{" "}
+            Next-Generation{" "}
             <span className="from-primary bg-gradient-to-r via-blue-600 to-purple-600 bg-clip-text text-transparent">
-              AI-Powered
-            </span>
+              AI HR Agent
+            </span>{" "}
+            Platform
           </motion.h1>
 
           {/* Subtitle */}
@@ -68,9 +69,7 @@ export function HeroSection() {
             transition={{ delay: 0.2 }}
             className="text-muted-foreground mx-auto mb-10 max-w-2xl text-lg leading-relaxed sm:mb-12 sm:text-xl"
           >
-            Replace traditional HR systems with intelligent automation. Cut
-            administrative workload by 80% while delivering exceptional employee
-            experiences.
+            Revolutionary autonomous HR intelligence that transforms workforce management through advanced machine learning, predictive analytics, and cognitive automation. Deliver enterprise-grade scalability with zero-touch operations.
           </motion.p>
 
           {/* Feature List */}
@@ -111,7 +110,7 @@ export function HeroSection() {
                   className="group from-primary via-primary to-primary/80 shadow-primary/25 hover:shadow-primary/30 relative h-14 overflow-hidden bg-gradient-to-r px-8 text-base font-semibold shadow-lg transition-all duration-300 hover:shadow-xl sm:h-16 sm:px-10 sm:text-lg"
                 >
                   <span className="relative z-10 flex items-center">
-                    Get Started Today
+                    Deploy AI Agent
                     <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
                   </span>
                   <div className="from-primary/10 absolute inset-0 bg-gradient-to-r to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
@@ -128,10 +127,10 @@ export function HeroSection() {
             className="mx-auto grid max-w-4xl grid-cols-2 gap-8 lg:grid-cols-4"
           >
             {[
-              { icon: Users, stat: "3x", label: "Faster Onboarding" },
-              { icon: TrendingUp, stat: "80%", label: "Workload Reduction" },
-              { icon: Brain, stat: "24/7", label: "AI-Powered Support" },
-              { icon: Shield, stat: "99.9%", label: "Uptime Guarantee" },
+              { icon: Users, stat: "10x", label: "Workforce Efficiency" },
+              { icon: TrendingUp, stat: "95%", label: "Process Automation" },
+              { icon: Brain, stat: "24/7", label: "Cognitive Intelligence" },
+              { icon: Shield, stat: "99.99%", label: "Enterprise SLA" },
             ].map((item, index) => (
               <div key={index} className="text-center">
                 <div className="bg-muted mb-3 inline-flex h-12 w-12 items-center justify-center rounded-xl">

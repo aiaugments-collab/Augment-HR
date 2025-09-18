@@ -1,10 +1,11 @@
 import { env } from "@/env";
-import { ChatGroq } from "@langchain/groq";
+import { ChatGoogleGenerativeAI } from "@langchain/google-genai";
 import { GoogleGenerativeAIEmbeddings } from "@langchain/google-genai";
 
-export const groqModel = new ChatGroq({
-  model: "llama-3.3-70b-versatile",
+export const geminiModel = new ChatGoogleGenerativeAI({
+  model: "gemini-1.5-pro",
   temperature: 0,
+  apiKey: env.GEMINI_API_KEY,
 });
 
 export const getGeminiEmbeddings = () =>

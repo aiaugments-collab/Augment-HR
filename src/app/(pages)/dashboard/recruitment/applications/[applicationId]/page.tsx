@@ -1,18 +1,20 @@
 import { Suspense } from "react";
-import { ApplicationDetailPage } from "@/modules/recruitment/applications/application-detail-page";
 import { ApplicationDetailSkeleton } from "@/modules/recruitment/components/skeletons";
+import { ApplicationDetailPage } from "@/modules/recruitment/applications/application-detail-page";
 
 interface ApplicationDetailPageProps {
-  params: {
+  params: Promise<{
     applicationId: string;
-  };
+  }>;
 }
 
-export default function ApplicationDetail({ params }: ApplicationDetailPageProps) {
+export default async function ApplicationDetail({ params }: ApplicationDetailPageProps) {
+  const { applicationId } = await params;
+  
   return (
     <div className="space-y-6">
       <Suspense fallback={<ApplicationDetailSkeleton />}>
-        <ApplicationDetailPage applicationId={params.applicationId} />
+        <ApplicationDetailPage applicationId={applicationId} />
       </Suspense>
     </div>
   );

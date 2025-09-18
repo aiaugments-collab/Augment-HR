@@ -87,7 +87,7 @@ export function PersonalDetails() {
           <CardHeader>
             <CardTitle className="flex items-center space-x-2">
               <UserCheck className="h-5 w-5" />
-              <span>Personal Details</span>
+              <span>Agent Profile</span>
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -176,7 +176,7 @@ export function PersonalDetails() {
             {/* Personal Stats */}
             <div className="space-y-3">
               <h4 className="text-sm font-medium text-foreground">
-                Your Journey
+                Agent Metrics
               </h4>
               <div className="grid grid-cols-2 gap-3">
                 <div className="rounded-lg border bg-muted/50 p-3 text-center">
@@ -190,7 +190,7 @@ export function PersonalDetails() {
                       : 0}
                   </div>
                   <div className="text-xs font-medium text-muted-foreground">
-                    Months Here
+                    Active Cycles
                   </div>
                 </div>
                 <div className="rounded-lg border bg-muted/50 p-3 text-center">
@@ -206,7 +206,7 @@ export function PersonalDetails() {
                       : "-"}
                   </div>
                   <div className="text-xs font-medium text-muted-foreground">
-                    Your Department
+                    Business Unit
                   </div>
                 </div>
               </div>
@@ -219,7 +219,7 @@ export function PersonalDetails() {
           <CardHeader>
             <CardTitle className="flex items-center space-x-2">
               <Building2 className="h-5 w-5" />
-              <span>Organization Details</span>
+              <span>Enterprise Infrastructure</span>
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -252,7 +252,7 @@ export function PersonalDetails() {
             {/* Organization Stats */}
             <div className="space-y-3">
               <h4 className="text-sm font-medium text-foreground">
-                Company Overview
+                Platform Analytics
               </h4>
               <div className="grid grid-cols-2 gap-3">
                 <div className="rounded-lg border bg-muted/50 p-3 text-center">
@@ -260,7 +260,7 @@ export function PersonalDetails() {
                     {members.length}
                   </div>
                   <div className="text-xs font-medium text-muted-foreground">
-                    Total Members
+                    Active Agents
                   </div>
                 </div>
                 <div className="rounded-lg border bg-muted/50 p-3 text-center">
@@ -272,7 +272,7 @@ export function PersonalDetails() {
                     )}
                   </div>
                   <div className="text-xs font-medium text-muted-foreground">
-                    Months Active
+                    Operational Cycles
                   </div>
                 </div>
               </div>
@@ -282,7 +282,7 @@ export function PersonalDetails() {
             {canManageMember ? (
               <div className="space-y-3">
                 <h4 className="text-sm font-medium text-foreground">
-                  Team Composition
+                  Agent Distribution
                 </h4>
                 <div className="grid grid-cols-3 gap-2">
                   <div className="rounded-lg border bg-muted/50 p-2 text-center">
@@ -332,10 +332,10 @@ export function PersonalDetails() {
             <CardTitle className="flex items-center justify-between">
               <div className="flex items-center space-x-2">
                 <Users className="h-5 w-5" />
-                <span>Team Members</span>
+                <span>Platform Agents</span>
               </div>
               <Badge variant="secondary" className="text-xs">
-                {members.length} member{members.length !== 1 ? "s" : ""}
+                {members.length} agent{members.length !== 1 ? "s" : ""}
               </Badge>
             </CardTitle>
           </CardHeader>
@@ -343,7 +343,7 @@ export function PersonalDetails() {
             <div className="space-y-3">
               <h4 className="flex items-center space-x-2 text-sm font-medium text-foreground">
                 <UserCheck className="h-4 w-4" />
-                <span>Recent Members</span>
+                <span>Active Workforce</span>
               </h4>
               <div className="grid gap-3 md:grid-cols-2">
                 {members.slice(0, 6).map((member) => (
@@ -387,7 +387,7 @@ export function PersonalDetails() {
               {members.length > 6 && (
                 <div className="text-center">
                   <p className="rounded-lg bg-muted py-2 text-xs text-muted-foreground">
-                    +{members.length - 6} more member
+                    +{members.length - 6} more agent
                     {members.length - 6 !== 1 ? "s" : ""}
                   </p>
                 </div>
@@ -396,7 +396,7 @@ export function PersonalDetails() {
               {members.length === 0 && (
                 <div className="py-6 text-center">
                   <Users className="mx-auto h-8 w-8 text-muted-foreground" />
-                  <p className="mt-2 text-sm text-muted-foreground">No members found</p>
+                  <p className="mt-2 text-sm text-muted-foreground">No agents found</p>
                 </div>
               )}
             </div>

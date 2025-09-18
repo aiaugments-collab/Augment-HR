@@ -14,9 +14,9 @@ export function Navigation() {
   const { data: session } = useSession();
 
   const navItems = [
-    { name: "Features", href: "#features", icon: Users },
-    { name: "Demo", href: "#showcase", icon: Brain },
-    { name: "Benefits", href: "#benefits", icon: BarChart3 },
+    { name: "AI Capabilities", href: "#features", icon: Users },
+    { name: "Platform Demo", href: "#showcase", icon: Brain },
+    { name: "Enterprise ROI", href: "#benefits", icon: BarChart3 },
   ];
 
   return (
@@ -57,7 +57,7 @@ export function Navigation() {
               >
                 <Link href="/sign-in">
                   <Button variant="ghost" size="sm">
-                    Sign In
+                    Access Platform
                   </Button>
                 </Link>
                 <Link href="/sign-up">
@@ -65,7 +65,7 @@ export function Navigation() {
                     size="sm"
                     className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
                   >
-                    Get Started
+                    Deploy AI Agent
                   </Button>
                 </Link>
               </motion.div>

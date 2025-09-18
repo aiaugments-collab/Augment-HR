@@ -33,15 +33,15 @@ export function QuickActions() {
       ? [
           {
             icon: UserPlus,
-            title: "Invite Employee",
-            description: "Onboard new team member",
+            title: "Deploy Agent",
+            description: "Initialize new workforce agent",
             route: "/dashboard/employees",
             onClick: () => handleActionClick("/employees"),
           },
           {
             icon: Users,
-            title: "Manage Employees",
-            description: "View and manage staff",
+            title: "Workforce Intelligence",
+            description: "Monitor and optimize agents",
             route: "/dashboard/employees",
             onClick: () => handleActionClick("/employees"),
           },
@@ -53,8 +53,8 @@ export function QuickActions() {
       ? [
           {
             icon: DollarSign,
-            title: "Process Payroll",
-            description: "Generate monthly payroll",
+            title: "Compensation Engine",
+            description: "Execute automated payroll",
             route: "/dashboard/payroll",
             onClick: () => handleActionClick("/payroll"),
           },
@@ -67,8 +67,8 @@ export function QuickActions() {
       ? [
           {
             icon: Calendar,
-            title: "Approve Leaves",
-            description: "Review pending requests",
+            title: "Absence Orchestration",
+            description: "AI-powered leave management",
             route: "/leaves",
             onClick: () => handleActionClick("/leaves"),
           },
@@ -80,8 +80,8 @@ export function QuickActions() {
       ? [
           {
             icon: Clock,
-            title: "Mark Attendance",
-            description: "Record daily attendance",
+            title: "Presence Analytics",
+            description: "Monitor workforce activity",
             route: "/dashboard/attendance",
             onClick: () => handleActionClick("/attendance"),
           },
@@ -93,22 +93,22 @@ export function QuickActions() {
       ? [
           {
             icon: FileText,
-            title: "Request Leave",
-            description: "Apply for time off",
+            title: "Absence Request",
+            description: "Automated leave processing",
             route: "/leaves/request",
             onClick: () => handleActionClick("/leaves/request"),
           },
           {
             icon: Clock,
-            title: "My Attendance",
-            description: "View your attendance",
+            title: "Activity Dashboard",
+            description: "Personal analytics view",
             route: "/attendance/my",
             onClick: () => handleActionClick("/attendance/my"),
           },
           {
             icon: DollarSign,
-            title: "My Payslips",
-            description: "View salary details",
+            title: "Compensation Data",
+            description: "Personal financial analytics",
             route: "/payroll/my",
             onClick: () => handleActionClick("/payroll/my"),
           },
@@ -120,8 +120,8 @@ export function QuickActions() {
       ? [
           {
             icon: BarChart3,
-            title: "Analytics",
-            description: "View team insights",
+            title: "Intelligence Hub",
+            description: "Predictive workforce analytics",
             route: "/analytics",
             onClick: () => handleActionClick("/analytics"),
           },
@@ -135,13 +135,13 @@ export function QuickActions() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Quick Actions</CardTitle>
+        <CardTitle>Intelligent Operations</CardTitle>
         <CardDescription>
           {ability.can("manage", "Employee")
-            ? "HR management tasks"
+            ? "AI-powered workforce management"
             : ability.can("update", "Employee")
-              ? "Team management tasks"
-              : "Your personal tasks"}
+              ? "Cognitive team orchestration"
+              : "Autonomous agent interface"}
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -167,8 +167,8 @@ export function QuickActions() {
         </div>
         {actions.length === 0 && (
           <div className="text-muted-foreground py-8 text-center">
-            <p>No quick actions available</p>
-            <p className="text-sm">Contact your administrator for access</p>
+            <p>No intelligent operations available</p>
+            <p className="text-sm">Contact your system administrator for access</p>
           </div>
         )}
       </CardContent>

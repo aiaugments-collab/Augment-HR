@@ -695,6 +695,7 @@ export class RecruitmentService {
     try {
       const application = await db
         .select({
+          // Application fields
           id: jobApplications.id,
           candidateName: jobApplications.candidateName,
           candidateEmail: jobApplications.candidateEmail,
@@ -702,40 +703,38 @@ export class RecruitmentService {
           resumeUrl: jobApplications.resumeUrl,
           coverLetter: jobApplications.coverLetter,
           status: jobApplications.status,
-          createdAt: jobApplications.createdAt,
+          createdAt: jobApplications.appliedAt,
           updatedAt: jobApplications.updatedAt,
-          jobPosting: {
-            id: jobPostings.id,
-            title: jobPostings.title,
-            department: jobPostings.department,
-            description: jobPostings.description,
-            location: jobPostings.location,
-            type: jobPostings.locationType,
-            level: jobPostings.experienceRequired,
-            salaryRange: sql<string>`CASE 
-              WHEN ${jobPostings.salaryRangeMin} IS NOT NULL AND ${jobPostings.salaryRangeMax} IS NOT NULL 
-              THEN CONCAT(${jobPostings.salaryCurrency}, ' ', ${jobPostings.salaryRangeMin}, ' - ', ${jobPostings.salaryRangeMax})
-              ELSE NULL 
-            END`,
-          },
-          aiScreeningResult: {
-            id: aiScreeningResults.id,
-            recommendation: aiScreeningResults.recommendation,
-            score: aiScreeningResults.score,
-            reasoning: aiScreeningResults.reasoning,
-            createdAt: aiScreeningResults.createdAt,
-          },
+          
+          // Job posting fields (flattened)
+          jobPostingId: jobPostings.id,
+          jobTitle: jobPostings.title,
+          jobDepartment: jobPostings.department,
+          jobDescription: jobPostings.description,
+          jobLocation: jobPostings.location,
+          jobType: jobPostings.locationType,
+          jobLevel: jobPostings.experienceRequired,
+          jobSalaryMin: jobPostings.salaryRangeMin,
+          jobSalaryMax: jobPostings.salaryRangeMax,
+          jobSalaryCurrency: jobPostings.salaryCurrency,
+          
+          // AI screening fields (flattened)
+          aiId: aiScreeningResults.id,
+          aiRecommendation: aiScreeningResults.recommendation,
+          aiScore: aiScreeningResults.matchScore,
+          aiReasoning: aiScreeningResults.summary,
+          aiCreatedAt: aiScreeningResults.screenedAt,
         })
         .from(jobApplications)
         .leftJoin(jobPostings, eq(jobApplications.jobPostingId, jobPostings.id))
         .leftJoin(
           aiScreeningResults,
-          eq(jobApplications.id, aiScreeningResults.applicationId)
+          eq(jobApplications.id, aiScreeningResults.jobApplicationId)
         )
         .where(
           and(
             eq(jobApplications.id, applicationId),
-            eq(jobPostings.organizationId, organizationId)
+            eq(jobApplications.organizationId, organizationId)
           )
         )
         .limit(1);
@@ -747,7 +746,39 @@ export class RecruitmentService {
         });
       }
 
-      return application[0];
+      const result = application[0];
+      
+      // Transform flattened result back to nested structure
+      return {
+        id: result.id,
+        candidateName: result.candidateName,
+        candidateEmail: result.candidateEmail,
+        candidatePhone: result.candidatePhone,
+        resumeUrl: result.resumeUrl,
+        coverLetter: result.coverLetter,
+        status: result.status,
+        createdAt: result.createdAt,
+        updatedAt: result.updatedAt,
+        jobPosting: result.jobPostingId ? {
+          id: result.jobPostingId,
+          title: result.jobTitle,
+          department: result.jobDepartment,
+          description: result.jobDescription,
+          location: result.jobLocation,
+          type: result.jobType,
+          level: result.jobLevel,
+          salaryRange: result.jobSalaryMin && result.jobSalaryMax 
+            ? `${result.jobSalaryCurrency || 'USD'} ${result.jobSalaryMin} - ${result.jobSalaryMax}`
+            : null,
+        } : null,
+        aiScreeningResult: result.aiId ? {
+          id: result.aiId,
+          recommendation: result.aiRecommendation,
+          score: result.aiScore,
+          reasoning: result.aiReasoning,
+          createdAt: result.aiCreatedAt,
+        } : null,
+      };
     } catch (error) {
       if (error instanceof TRPCError) {
         throw error;

@@ -20,9 +20,9 @@ export function SuperAdminDashboard() {
   return (
     <div className="space-y-6">
       <div className="space-y-2">
-        <h1 className="text-3xl font-bold">Welcome, Super Admin</h1>
+        <h1 className="text-3xl font-bold">AI Platform Command Center</h1>
         <p className="text-muted-foreground">
-          Manage and monitor your Augment HR system
+          Enterprise AI workforce intelligence administration
         </p>
       </div>
 
@@ -30,7 +30,7 @@ export function SuperAdminDashboard() {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">
-              Total Organizations
+              Enterprise Deployments
             </CardTitle>
             <Building2 className="text-muted-foreground h-4 w-4" />
           </CardHeader>
